@@ -33,7 +33,14 @@ Our mission is to create an environment where curiosity meets execution.
 
 ---
 
+
+## Developed By:
+-Anikait Bansal
+-Electrical Engineering
+-First Year
+
 ## 📁 Project Structure
+
 
 
 
