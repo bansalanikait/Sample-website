@@ -288,6 +288,22 @@ section {
     min-height: 200px;
     white-space: pre-wrap;
 }
+#cursor {
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+#cursor {
+    color: #00ffee;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+
 
 
 

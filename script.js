@@ -20,38 +20,73 @@ setInterval(() => {
 }, 150);
 
 const terminalLines = [
-    "> Initializing SQC Robotics Core...",
-    "> Loading Embedded Systems Module...",
-    "> Calibrating Sensors...",
-    "> Booting AI & Vision Stack...",
-    "> Connecting IoT Devices...",
-    "> System Status: ONLINE",
+    "> Boot sequence initiated...",
+    "> Initializing SQC Robotics Core v1.0",
+    "> Checking system integrity... OK",
     "",
-    "> Welcome to SQC Robotics Club"
+    "> Loading Embedded Systems Module",
+    "  - Microcontrollers: Arduino / ESP32",
+    "  - Motor Drivers: ONLINE",
+    "  - Sensors: Calibrated",
+    "",
+    "> Loading AI & Vision Stack",
+    "  - OpenCV modules loaded",
+    "  - Neural inference engine ready",
+    "  - Camera feed: ACTIVE",
+    "",
+    "> Initializing IoT Network",
+    "  - MQTT Broker: CONNECTED",
+    "  - Cloud Dashboard: SYNCED",
+    "",
+    "> Competition Mode Configuration",
+    "  - Autonomous Navigation: ENABLED",
+    "  - Real-time Decision Making: ENABLED",
+    "  - Fail-safe Protocols: ACTIVE",
+    "",
+    "> Training & Development Programs",
+    "  - Robotics Bootcamp: AVAILABLE",
+    "  - AI & ML Workshops: AVAILABLE",
+    "  - Hardware Hack Sessions: SCHEDULED",
+    "",
+    "> System Status: ALL SYSTEMS OPERATIONAL",
+    "> Welcome to SQC Robotics Club",
+    "> Type 'join_sqc' to begin your journey"
 ];
 
 let lineIndex = 0;
 let charIndex = 0;
-const speed = 40;
+let started = false;
+
+const terminal = document.getElementById("terminal-text");
+const cursor = document.getElementById("cursor");
 
 function typeTerminal() {
-    if (lineIndex < terminalLines.length) {
-        const line = terminalLines[lineIndex];
-        if (charIndex < line.length) {
-            document.getElementById("terminal-text").textContent += line.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeTerminal, speed);
-        } else {
-            document.getElementById("terminal-text").textContent += "\n";
-            charIndex = 0;
-            lineIndex++;
-            setTimeout(typeTerminal, 400);
-        }
+    if (lineIndex >= terminalLines.length) return;
+
+    const currentLine = terminalLines[lineIndex];
+
+    if (charIndex < currentLine.length) {
+        terminal.textContent += currentLine.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeTerminal, 35);
+    } else {
+        terminal.textContent += "\n";
+        charIndex = 0;
+        lineIndex++;
+        setTimeout(typeTerminal, 300);
     }
 }
 
-/* Start typing when page loads */
-window.addEventListener("load", typeTerminal);
+const terminalSection = document.getElementById("terminal");
+
+window.addEventListener("scroll", () => {
+    const rect = terminalSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight && !started) {
+        started = true;
+        typeTerminal();
+    }
+});
+
 
 
 
